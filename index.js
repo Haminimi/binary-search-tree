@@ -11,3 +11,17 @@ class Tree {
 		this.root = buildTree(mergeSort(removeDuplicates(array)));
 	}
 }
+
+function buildTree(array, start = 0, end = array.length - 1) {
+	if (start > end) {
+		return null;
+	} else {
+		const halfIndex = Math.floor((start + end) / 2);
+
+		const root = new Node(array[halfIndex]);
+		root.left = buildTree(array, start, halfIndex - 1);
+		root.right = buildTree(array, halfIndex + 1, end);
+
+		return root;
+	}
+}
