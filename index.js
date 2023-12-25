@@ -10,6 +10,32 @@ class Tree {
 	constructor(array) {
 		this.root = buildTree(mergeSort(removeDuplicates(array)));
 	}
+
+	insert(data, currentNode = this.root) {
+		if (!this.root) {
+			this.root = new Node(data);
+		} else {
+			if (data > currentNode.data) {
+				if (currentNode.right === null) {
+					currentNode.right = new Node(data);
+					console.log(`Inserted: ${currentNode.right.data}`);
+					return;
+				} else {
+					this.insert(data, currentNode.right);
+				}
+			}
+
+			if (data < currentNode.data) {
+				if (currentNode.left === null) {
+					currentNode.left = new Node(data);
+					console.log(`Inserted: ${currentNode.left.data}`);
+					return;
+				} else {
+					this.insert(data, currentNode.left);
+				}
+			}
+		}
+	}
 }
 
 function buildTree(array, start = 0, end = array.length - 1) {
