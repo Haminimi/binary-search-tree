@@ -118,6 +118,50 @@ class Tree {
 			}
 		}
 	}
+
+	levelOrder(callback) {
+		if (!this.root) {
+			console.log('The tree is empty');
+		} else {
+			if (!callback) {
+				let queue = [];
+				queue.push(this.root);
+				let current;
+				let resultArray = [];
+
+				while (queue.length > 0) {
+					current = queue[0];
+					resultArray.push(current.data);
+					if (current.left !== null) {
+						queue.push(current.left);
+					}
+					if (current.right !== null) {
+						queue.push(current.right);
+					}
+					queue.shift();
+				}
+
+				console.log(`Level order: ${resultArray}`);
+				return resultArray;
+			} else {
+				let queue = [];
+				queue.push(this.root);
+				let current;
+
+				while (queue.length > 0) {
+					current = queue[0];
+					callback(current.data);
+					if (current.left !== null) {
+						queue.push(current.left);
+					}
+					if (current.right !== null) {
+						queue.push(current.right);
+					}
+					queue.shift();
+				}
+			}
+		}
+	}
 }
 
 function buildTree(array, start = 0, end = array.length - 1) {
