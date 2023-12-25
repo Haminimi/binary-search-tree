@@ -494,3 +494,14 @@ function merge(leftPart, rightPart) {
 
 	return resultArray;
 }
+
+function generateArray() {
+	let resultArray = [];
+	for (let i = 0; i < 11; i++) {
+		const randomNumber = Math.floor(Math.random() * (100 - 1) + 1);
+		resultArray.push(randomNumber);
+	}
+	const arrayWithUniqueValues = removeDuplicates(resultArray);
+	const sortedArray = mergeSort(arrayWithUniqueValues);
+	return sortedArray;
+}
