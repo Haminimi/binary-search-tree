@@ -162,6 +162,62 @@ class Tree {
 			}
 		}
 	}
+
+	levelOrderRecursive(
+		callback,
+		queue = [this.root],
+		current,
+		resultArray = []
+	) {
+		if (!this.root) {
+			console.log('The tree is empty');
+		} else {
+			if (!callback) {
+				if (queue.length === 0) {
+					console.log(resultArray);
+					return resultArray;
+				} else {
+					current = queue[0];
+					resultArray.push(current.data);
+
+					if (current.left !== null) {
+						queue.push(current.left);
+					}
+					if (current.right !== null) {
+						queue.push(current.right);
+					}
+					queue.shift();
+					return this.levelOrderRecursive(
+						callback,
+						queue,
+						current,
+						resultArray
+					);
+				}
+			} else {
+				if (queue.length === 0) {
+					return;
+				} else {
+					current = queue[0];
+					callback(current.data);
+
+					if (current.left !== null) {
+						queue.push(current.left);
+					}
+					if (current.right !== null) {
+						queue.push(current.right);
+					}
+					queue.shift();
+					return this.levelOrderRecursive(
+						callback,
+						queue,
+						current,
+						resultArray
+					);
+				}
+			}
+		}
+	}
 }
 
 function buildTree(array, start = 0, end = array.length - 1) {
