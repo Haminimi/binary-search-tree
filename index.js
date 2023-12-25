@@ -302,6 +302,31 @@ class Tree {
 			}
 		}
 	}
+
+	height(node = this.root) {
+		if (!this.root) {
+			console.log('The tree is empty');
+		} else {
+			let currentNode = node;
+			let sumRightTree = 1;
+			let sumLeftTree = 1;
+			while (currentNode) {
+				currentNode = currentNode.right;
+				sumRightTree += 1;
+			}
+
+			currentNode = node;
+
+			while (currentNode) {
+				currentNode = currentNode.left;
+				sumLeftTree += 1;
+			}
+
+			const result = Math.max(sumLeftTree, sumRightTree);
+			console.log(`Height: ${result}`);
+			return result;
+		}
+	}
 }
 
 function buildTree(array, start = 0, end = array.length - 1) {
