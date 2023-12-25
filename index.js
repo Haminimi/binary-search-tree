@@ -274,6 +274,34 @@ class Tree {
 			}
 		}
 	}
+
+	postOrder(callback, current = this.root, resultArray = []) {
+		if (!this.root) {
+			console.log('The tree is empty');
+		} else {
+			if (!callback) {
+				if (current === null) {
+					return resultArray;
+				} else {
+					this.postOrder(callback, current.left, resultArray);
+					this.postOrder(callback, current.right, resultArray);
+					resultArray.push(current.data);
+
+					return resultArray;
+				}
+			} else {
+				if (current === null) {
+					return;
+				} else {
+					this.postOrder(callback, current.left);
+					this.postOrder(callback, current.right);
+					callback(current.data);
+
+					return;
+				}
+			}
+		}
+	}
 }
 
 function buildTree(array, start = 0, end = array.length - 1) {
