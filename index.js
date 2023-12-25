@@ -343,6 +343,27 @@ class Tree {
 			}
 		}
 	}
+
+	depth(value) {
+		if (!this.root) {
+			console.log('The tree is empty');
+		} else {
+			let sum = 0;
+			let current = this.root;
+			while (current) {
+				if (current.data === value) {
+					console.log(`Depth: ${sum}`);
+					return sum;
+				} else if (value > current.data) {
+					sum += 1;
+					current = current.right;
+				} else {
+					sum += 1;
+					current = current.left;
+				}
+			}
+		}
+	}
 }
 
 function buildTree(array, start = 0, end = array.length - 1) {
