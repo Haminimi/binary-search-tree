@@ -25,3 +25,47 @@ function buildTree(array, start = 0, end = array.length - 1) {
 		return root;
 	}
 }
+
+function mergeSort(array) {
+	if (array.length === 1) {
+		return array;
+	} else {
+		const halfIndex = Math.floor(array.length / 2);
+
+		const leftPart = array.slice(0, halfIndex);
+		const rightPart = array.slice(halfIndex);
+
+		const leftResult = mergeSort(leftPart);
+		const rightResult = mergeSort(rightPart);
+
+		return merge(leftResult, rightResult);
+	}
+}
+
+function merge(leftPart, rightPart) {
+	let i = 0;
+	let j = 0;
+	let resultArray = [];
+
+	while (i < leftPart.length && j < rightPart.length) {
+		if (leftPart[i] < rightPart[j]) {
+			resultArray.push(leftPart[i]);
+			i++;
+		} else if (rightPart[j] < leftPart[i]) {
+			resultArray.push(rightPart[j]);
+			j++;
+		}
+	}
+
+	while (i < leftPart.length) {
+		resultArray.push(leftPart[i]);
+		i++;
+	}
+
+	while (j < rightPart.length) {
+		resultArray.push(rightPart[j]);
+		j++;
+	}
+
+	return resultArray;
+}
