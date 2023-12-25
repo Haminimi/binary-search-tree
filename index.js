@@ -100,6 +100,24 @@ class Tree {
 			}
 		}
 	}
+
+	find(value) {
+		if (!this.root) {
+			console.log('The tree is empty');
+		} else {
+			let current = this.root;
+			while (current) {
+				if (current.data === value) {
+					console.log(current);
+					return current;
+				} else if (value > current.data) {
+					current = current.right;
+				} else {
+					current = current.left;
+				}
+			}
+		}
+	}
 }
 
 function buildTree(array, start = 0, end = array.length - 1) {
