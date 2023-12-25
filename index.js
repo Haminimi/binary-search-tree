@@ -364,6 +364,38 @@ class Tree {
 			}
 		}
 	}
+
+	isBalanced(node = this.root) {
+		if (!this.root) {
+			console.log('The tree is empty');
+		} else {
+			const result = this.findIsItBalanced(node) !== -1;
+			console.log(`Balanced: ${result}`);
+			return result;
+		}
+	}
+
+	findIsItBalanced(node) {
+		if (node === null) {
+			return 0;
+		} else {
+			const leftHeight = this.findIsItBalanced(node.left);
+			if (leftHeight === -1) {
+				return -1;
+			}
+
+			const rightHeight = this.findIsItBalanced(node.right);
+			if (rightHeight === -1) {
+				return -1;
+			}
+
+			if (Math.abs(leftHeight - rightHeight) > 1) {
+				return -1;
+			}
+
+			return Math.max(leftHeight, rightHeight) + 1;
+		}
+	}
 }
 
 function buildTree(array, start = 0, end = array.length - 1) {
