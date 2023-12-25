@@ -396,6 +396,16 @@ class Tree {
 			return Math.max(leftHeight, rightHeight) + 1;
 		}
 	}
+
+	rebalance() {
+		if (!this.root) {
+			console.log('The tree is empty');
+		} else {
+			const array = this.inOrder();
+			this.root = buildTree(array);
+			console.log('Rebalanced');
+		}
+	}
 }
 
 function buildTree(array, start = 0, end = array.length - 1) {
