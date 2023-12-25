@@ -327,6 +327,22 @@ class Tree {
 			return result;
 		}
 	}
+
+	heightRecursive(node = this.root, sum = -1) {
+		if (!this.root) {
+			console.log('The tree is empty');
+		} else {
+			if (node === null) {
+				return sum;
+			} else {
+				sum += 1;
+				const rightSum = this.heightRecursive(node.right, sum);
+				const leftSum = this.heightRecursive(node.left, sum);
+
+				return Math.max(leftSum, rightSum);
+			}
+		}
+	}
 }
 
 function buildTree(array, start = 0, end = array.length - 1) {
