@@ -505,3 +505,28 @@ function generateArray() {
 	const sortedArray = mergeSort(arrayWithUniqueValues);
 	return sortedArray;
 }
+
+function test() {
+	const array = generateArray();
+	const tree = new Tree(array);
+	tree.prettyPrint();
+	tree.isBalanced();
+	tree.levelOrder();
+	console.log(`Pre order: ${tree.preOrder()}`);
+	console.log(`In order: ${tree.inOrder()}`);
+	console.log(`Post order: ${tree.postOrder()}`);
+	tree.insert(101);
+	tree.insert(102);
+	tree.insert(103);
+	tree.prettyPrint();
+	tree.isBalanced();
+	tree.rebalance();
+	tree.prettyPrint();
+	tree.isBalanced();
+	tree.levelOrder();
+	console.log(`Pre order: ${tree.preOrder()}`);
+	console.log(`In order: ${tree.inOrder()}`);
+	console.log(`Post order: ${tree.postOrder()}`);
+}
+
+test();
