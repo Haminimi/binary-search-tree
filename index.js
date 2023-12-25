@@ -447,6 +447,10 @@ function buildTree(array, start = 0, end = array.length - 1) {
 	}
 }
 
+function removeDuplicates(array) {
+	return array.filter((value, index, arr) => arr.indexOf(value) === index);
+}
+
 function mergeSort(array) {
 	if (array.length === 1) {
 		return array;
