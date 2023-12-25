@@ -406,6 +406,31 @@ class Tree {
 			console.log('Rebalanced');
 		}
 	}
+
+	prettyPrint(node = this.root, prefix = '', isLeft = true) {
+		if (!this.root) {
+			console.log('The tree is empty');
+		} else {
+			if (node === null) {
+				return;
+			}
+			if (node.right !== null) {
+				this.prettyPrint(
+					node.right,
+					`${prefix}${isLeft ? '│   ' : '    '}`,
+					false
+				);
+			}
+			console.log(`${prefix}${isLeft ? '└── ' : '┌── '}${node.data}`);
+			if (node.left !== null) {
+				this.prettyPrint(
+					node.left,
+					`${prefix}${isLeft ? '    ' : '│   '}`,
+					true
+				);
+			}
+		}
+	}
 }
 
 function buildTree(array, start = 0, end = array.length - 1) {
