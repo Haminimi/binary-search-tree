@@ -36,6 +36,70 @@ class Tree {
 			}
 		}
 	}
+
+	delete(data, currentNode = this.root, prevNode) {
+		if (!this.root) {
+			console.log('The tree is empty');
+		} else {
+			if (data === currentNode.data) {
+				if (!prevNode) {
+					let current = this.root.left;
+					while (current.right) {
+						current = current.right;
+					}
+					current.right = this.root.right;
+					this.root = this.root.left;
+				} else {
+					let parentNode;
+					if (data > prevNode.data) {
+						parentNode = prevNode.right;
+					} else {
+						parentNode = prevNode.left;
+					}
+					if (
+						currentNode.right === null &&
+						currentNode.left === null
+					) {
+						parentNode = null;
+					} else if (currentNode.right === null) {
+						parentNode = currentNode.left;
+					} else if (currentNode.left === null) {
+						parentNode = currentNode.right;
+					} else if (currentNode.left.data < currentNode.right.data) {
+						if (currentNode.left.right !== null) {
+							let lastRightNode = currentNode.left.right;
+							while (lastRightNode.right) {
+								lastRightNode = lastRightNode.right;
+							}
+							lastRightNode.right = currentNode.right;
+						} else {
+							currentNode.left.right = currentNode.right;
+						}
+						parentNode = currentNode.left;
+					} else {
+						if (currentNode.right.right !== null) {
+							currentNode.right.right.right = currentNode.left;
+						} else {
+							currentNode.right.right = currentNode.left;
+						}
+						parentNode = currentNode.right;
+					}
+
+					if (data > prevNode.data) {
+						prevNode.right = parentNode;
+					} else {
+						prevNode.left = parentNode;
+					}
+
+					return;
+				}
+			} else if (data > currentNode.data) {
+				this.delete(data, currentNode.right, currentNode);
+			} else {
+				this.delete(data, currentNode.left, currentNode);
+			}
+		}
+	}
 }
 
 function buildTree(array, start = 0, end = array.length - 1) {
