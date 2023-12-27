@@ -21,7 +21,6 @@ Open up your [developer console](https://haminimi.github.io/binary-search-tree/)
 **The project is built with:**
 - HTML
 - Vanilla JavaScript
-- Vanilla CSS
 
 **Tools**
 - Git
