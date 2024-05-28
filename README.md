@@ -39,9 +39,4 @@ The levelOrder and height methods are implemented using both the iterative and r
 I love to see a tree printed in the console. 😄
 ## Credits
 - Icon used for the favicon image is one of the [Hierarchy icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/hierarchy).
-## Author
-- [GitHub](https://github.com/Haminimi)
-- [Exercism](https://exercism.org/profiles/Haminimi)
-- [LeetCode](https://leetcode.com/Haminimi/)
-- Email: haminimi.dev@gmail.com
 ## Happy coding!
